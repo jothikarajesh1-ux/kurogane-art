@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>KUROGANE — Art & Imagination</title>
+
+<meta name="description" content="KUROGANE — an independent artist's archive of illustrations, imagined worlds, and visual stories.">
+
+<style>
+/* =================================
+   KUROGANE — DESIGN SYSTEM
+================================= */
+
+:root {
+    --paper: #f5f0e7;
+    --paper-dark: #e9dfd0;
+    --ink: #49372b;
+    --muted: #8c7867;
+    --line: rgba(73, 55, 43, 0.2);
+    --accent: #a77b59;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Georgia, "Times New Roman", serif;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font: inherit;
+}
+
+::selection {
+    background: var(--ink);
+    color: var(--paper);
+}
+
+/* =================================
+   BACKGROUND TEXTURE
+================================= */
+
+.grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 20;
+    opacity: 0.12;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E");
+}
+
+/* =================================
+   INTRO ANIMATION
+================================= */
+
+.intro-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: var(--ink);
+    color: var(--paper);
+    display: grid;
+    place-items: center;
+    animation: introExit 1s ease 2.3s forwards;
+}
+
+.intro-content {
+    text-align: center;
+    overflow: hidden;
+}
+
+.intro-label {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 6px;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.3s forwards;
+}
+
+.intro-title {
+    font-size: clamp(45px, 10vw, 100px);
+    font-weight: normal;
+    letter-spacing: 0.16em;
+    padding-left: 0.16em;
+    opacity: 0;
+    animation: titleReveal 1.2s cubic-bezier(.2,.8,.2,1) 0.5s forwards;
+}
+
+.intro-line {
+    width: 0;
+    height: 1px;
+    background: var(--paper);
+    margin: 24px auto;
+    animation: lineReveal 0.9s ease 1.1s forwards;
+}
+
+.intro-caption {
+    font-size: 12px;
+    letter-spacing: 3px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 1.3s forwards;
+}
+
+@keyframes titleReveal {
+    from {
+        opacity: 0;
+        transform: translateY(45px);
+        filter: blur(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes lineReveal {
+    to {
+        width: 110px;
+    }
+}
+
+@keyframes introExit {
+    to {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+}
+
+/* =================================
+   NAVIGATION
+================================= */
+
+.navbar {
+    width: 100%;
+    min-height: 82px;
+    padding: 0 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    z-index: 30;
+    background: rgba(245, 240, 231, 0.88);
+    backdrop-filter: blur(12px);
+}
+
+.logo {
+    font-size: 21px;
+    letter-spacing: 5px;
+    font-weight: normal;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.nav-links a {
+    position: relative;
+    padding: 8px 0;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 2px;
+    width: 100%;
+    height: 1px;
+    background: var(--ink);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.35s ease;
+}
+
+.nav-links a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* =================================
+   HERO SECTION
+================================= */
+
+.hero {
+    min-height: 710px;
+    min-height: min(820px, calc(100svh - 82px));
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 90px 20px 100px;
+    overflow: hidden;
+}
+
+.hero-orb {
+    position: absolute;
+    width: min(65vw, 520px);
+    aspect-ratio: 1;
+    border: 1px solid rgba(167, 123, 89, 0.24);
+    border-radius: 50%;
+    animation: orbFloat 9s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.hero-orb::before,
+.hero-orb::after {
+    content: "";
+    position: absolute;
+    border: 1px solid rgba(167, 123, 89, 0.2);
+    border-radius: 50%;
+    inset: 35px;
+}
+
+.hero-orb::after {
+    inset: 75px;
+}
+
+@keyframes orbFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0);
+    }
+    50% {
+        transform: translateY(-18px) rotate(5deg);
+    }
+}
+
+.hero-index {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 32px;
+    position: relative;
+    animation: fadeUp 1s ease 2.5s both;
+}
+
+.hero-title {
+    font-size: clamp(54px, 11vw, 140px);
+    font-weight: normal;
+    letter-spacing: 0.12em;
+    padding-left: 0.12em;
+    line-height: 1.1;
+    position: relative;
+    animation: titleReveal 1.2s cubic-bezier(.2,.8,.2,1) 2.5s both;
+}
+
+.hero-subtitle {
+    margin-top: 24px;
+    font-size: clamp(14px, 2vw, 18px);
+    font-style: italic;
+    color: var(--muted);
+    position: relative;
+    animation: fadeUp 1s ease 2.8s both;
+}
+
+.hero-description {
+    margin-top: 17px;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    line-height: 2;
+    position: relative;
+    animation: fadeUp 1s ease 3s both;
+}
+
+.hero-cta {
+    margin-top: 42px;
+    padding: 16px 28px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px solid var(--ink);
+    position: relative;
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
+    animation: fadeUp 1s ease 3.2s both;
+}
+
+.hero-cta:hover {
+    background: transparent;
+    color: var(--ink);
+    transform: translateY(-4px);
+}
+
+.scroll-note {
+    position: absolute;
+    bottom: 30px;
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    animation: fadeUp 1s ease 3.5s both;
+}
+
+/* =================================
+   SECTION HEADINGS
+================================= */
+
+.section {
+    padding: 110px 8%;
+}
+
+.section-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 20px;
+    margin-bottom: 45px;
+}
+
+.eyebrow {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 15px;
+}
+
+.section-title {
+    font-size: clamp(35px, 5vw, 62px);
+    font-weight: normal;
+    letter-spacing: -1px;
+}
+
+.section-note {
+    max-width: 240px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.9;
+    color: var(--muted);
+}
+
+/* =================================
+   ART GALLERY
+================================= */
+
+.art-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 45px 24px;
+    align-items: start;
+}
+
+.art-card {
+    min-width: 0;
+    grid-column: span 4;
+}
+
+.art-card:nth-child(2) {
+    grid-column: span 4;
+    margin-top: 75px;
+}
+
+.art-card:nth-child(3) {
+    grid-column: span 4;
+    margin-top: 25px;
+}
+
+.art-frame {
+    position: relative;
+    overflow: hidden;
+    background: var(--paper-dark);
+    aspect-ratio: 4 / 5;
+    border: 1px solid var(--line);
+}
+
+.art-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        145deg,
+        rgba(255,255,255,0.14),
+        transparent 50%,
+        rgba(73,55,43,0.06)
+    );
+    pointer-events: none;
+}
+
+.art-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 22px;
+    text-align: center;
+    color: var(--muted);
+    transition: transform 0.7s cubic-bezier(.2,.8,.2,1);
+}
+
+.art-card:hover .art-placeholder {
+    transform: scale(1.04);
+}
+
+.art-placeholder span {
+    font-size: 40px;
+    margin-bottom: 18px;
+    opacity: 0.65;
+}
+
+.art-placeholder p {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    line-height: 2;
+}
+
+.art-placeholder small {
+    margin-top: 8px;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.art-caption {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: baseline;
+    padding-top: 17px;
+}
+
+.art-caption h3 {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.art-caption span {
+    font-family: Arial, sans-serif;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+/* =================================
+   ABOUT SECTION
+================================= */
+
+.about {
+    background: var(--paper-dark);
+    padding: 110px 8%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.about-mark {
+    font-size: clamp(80px, 15vw, 180px);
+    font-weight: normal;
+    line-height: 1;
+    text-align: center;
+    letter-spacing: -10px;
+    opacity: 0.75;
+}
+
+.about-copy h2 {
+    font-size: clamp(38px, 5vw, 60px);
+    font-weight: normal;
+    line-height: 1.15;
+    margin-bottom: 28px;
+}
+
+.about-copy p {
+    font-size: 15px;
+    line-height: 2;
+    color: var(--muted);
+    max-width: 430px;
+}
+
+/* =================================
+   CONTACT / FOOTER
+================================= */
+
+.contact {
+    padding: 110px 20px;
+    text-align: center;
+}
+
+.contact h2 {
+    font-size: clamp(38px, 7vw, 80px);
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+.contact p {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    line-height: 2;
+    color: var(--muted);
+}
+
+.footer {
+    border-top: 1px solid var(--line);
+    padding: 28px 8%;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--muted);
+}
+
+/* =================================
+   SCROLL REVEAL
+================================= */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s cubic-bezier(.2,.8,.2,1);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =================================
+   RESPONSIVE DESIGN
+================================= */
+
+@media (max-width: 750px) {
+    .navbar {
+        padding: 0 5%;
+        min-height: 72px;
+    }
+
+    .logo {
+        font-size: 17px;
+        letter-spacing: 3px;
+    }
+
+    .nav-links {
+        gap: 14px;
+        font-size: 9px;
+    }
+
+    .hero {
+        min-height: 680px;
+        min-height: 85svh;
+    }
+
+    .hero-orb {
+        width: 90vw;
+    }
+
+    .section {
+        padding: 80px 6%;
+    }
+
+    .section-top {
+        align-items: start;
+        flex-direction: column;
+    }
+
+    .art-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 35px 15px;
+    }
+
+    .art-card,
+    .art-card:nth-child(2),
+    .art-card:nth-child(3) {
+        grid-column: span 1;
+        margin-top: 0;
+    }
+
+    .art-card:nth-child(2) {
+        margin-top: 35px;
+    }
+
+    .art-caption {
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    .about {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 80px 7%;
+    }
+
+    .about-mark {
+        font-size: 110px;
+    }
+
+    .contact {
+        padding: 85px 20px;
+    }
+
+    .footer {
+        padding: 25px 6%;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 390px) {
+    .nav-links {
+        gap: 9px;
+        font-size: 8px;
+    }
+
+    .logo {
+        font-size: 14px;
+        letter-spacing: 2px;
+    }
+
+    .art-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .art-card:nth-child(2) {
+        margin-top: 0;
+    }
+}
+
+/* Accessibility: reduce motion when requested */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .intro-screen {
+        display: none;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- CINEMATIC INTRO -->
+
+<div class="intro-screen" aria-hidden="true">
+    <div class="intro-content">
+        <p class="intro-label">AN INDEPENDENT ART ARCHIVE</p>
+        <h1 class="intro-title">KUROGANE</h1>
+        <div class="intro-line"></div>
+        <p class="intro-caption">A WORLD OF MY OWN</p>
+    </div>
+</div>
+
+<!-- NAVIGATION -->
+
+<header class="navbar">
+    <a class="logo" href="#home">KUROGANE</a>
+
+    <nav class="nav-links" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#gallery">Works</a>
+        <a href="#about">About</a>
+    </nav>
+</header>
+
+<main>
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-orb" aria-hidden="true"></div>
+
+        <p class="hero-index">Independent Artist · Visual Archive</p>
+
+        <h1 class="hero-title">KUROGANE</h1>
+
+        <p class="hero-subtitle">
+            An archive of imagined worlds.
+        </p>
+
+        <p class="hero-description">
+            CHARACTERS · EMOTIONS · STORIES
+        </p>
+
+        <a class="hero-cta" href="#gallery">
+            Explore the archive &nbsp; ↗
+        </a>
+
+        <p class="scroll-note">SCROLL TO DISCOVER ↓</p>
+
+    </section>
+
+    <!-- GALLERY -->
+
+    <section class="section" id="gallery">
+
+        <div class="section-top reveal">
+            <div>
+                <p class="eyebrow">01 — Selected works</p>
+                <h2 class="section-title">The Art Archive</h2>
+            </div>
+
+            <p class="section-note">
+                Fragments of imagination, captured in lines,
+                shapes, and stories.
+            </p>
+        </div>
+
+        <div class="art-grid">
+
+            <article class="art-card reveal">
+                <div class="art-frame">
+                    <div class="art-placeholder">
+                        <span>✳</span>
+                        <p>ARTWORK NO. 01</p>
+                        <small>Your illustration goes here</small>
+                    </div>
+                </div>
+                <div class="art-caption">
+                    <h3>Untitled I</h3>
+                    <span>ILLUSTRATION / 01</span>
+                </div>
+            </article>
+
+            <article class="art-card reveal">
+                <div class="art-frame">
+                    <div class="art-placeholder">
+                        <span>⌁</span>
+                        <p>ARTWORK NO. 02</p>
+                        <small>Your illustration goes here</small>
+                    </div>
+                </div>
+                <div class="art-caption">
+                    <h3>Untitled II</h3>
+                    <span>STUDY / 02</span>
+                </div>
+            </article>
+
+            <article class="art-card reveal">
+                <div class="art-frame">
+                    <div class="art-placeholder">
+                        <span>✳</span>
+                        <p>ARTWORK NO. 03</p>
+                        <small>Your illustration goes here</small>
+                    </div>
+                </div>
+                <div class="art-caption">
+                    <h3>Untitled III</h3>
+                    <span>SKETCH / 03</span>
+                </div>
+            </article>
+
+        </div>
+
+    </section>
+
+    <!-- ABOUT -->
+
+    <section class="about" id="about">
+
+        <div class="about-mark reveal" aria-hidden="true">
+            K.
+        </div>
+
+        <div class="about-copy reveal">
+            <p class="eyebrow">02 — Behind the lines</p>
+
+            <h2>
+                Every line<br>
+                holds a world.
+            </h2>
+
+            <p>
+                KUROGANE is an independent art archive exploring
+                characters, emotions, and imagined worlds through
+                stylized illustrations.
+
+                A space for experiments, unfinished ideas,
+                and things that are difficult to put into words.
+            </p>
+        </div>
+
+    </section>
+
+    <!-- CLOSING -->
+
+    <section class="contact reveal">
+        <p class="eyebrow">03 — End of this chapter</p>
+
+        <h2>More worlds<br>to come.</h2>
+
+        <p>
+            This archive is only the beginning.
+        </p>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <span>© KUROGANE</span>
+    <span>MADE WITH IMAGINATION.</span>
+</footer>
+
+<script>
+/* =================================
+   SCROLL REVEAL
+================================= */
+
+const revealItems = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.12
+    });
+
+    revealItems.forEach((item) => observer.observe(item));
+} else {
+    revealItems.forEach((item) => item.classList.add("visible"));
+}
+</script>
+
+</body>
+</html>

@@ -588,6 +588,232 @@ button { font: inherit; }
   color: var(--muted);
 }
 
+.character-collection {
+  padding: 110px 8% 52px;
+}
+
+.collection-shell {
+  margin-bottom: 34px;
+}
+
+.collection-label {
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(242, 206, 233, 0.9), rgba(214, 198, 255, 0.9));
+  color: var(--ink);
+  border: 1px solid rgba(141, 122, 231, 0.14);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.character-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 26px;
+}
+
+.character-card {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255,255,255,0.5);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 18px 36px rgba(105, 83, 176, 0.08);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.character-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 22px 42px rgba(105, 83, 176, 0.12);
+}
+
+.character-art {
+  position: relative;
+  height: 270px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(248, 234, 255, 0.8));
+}
+
+.character-art::before,
+.character-art::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.75;
+}
+
+.character-art::before {
+  width: 160px;
+  height: 160px;
+  background: rgba(255,255,255,0.26);
+  top: -40px;
+  right: -30px;
+}
+
+.character-art::after {
+  width: 140px;
+  height: 140px;
+  background: rgba(255,255,255,0.18);
+  bottom: -20px;
+  left: -20px;
+}
+
+.character-figure {
+  position: relative;
+  z-index: 2;
+  width: 120px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: chibiFloat 4.2s ease-in-out infinite;
+}
+
+.character-face {
+  position: relative;
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  background: #f8e5d0;
+  border: 2px solid rgba(67, 48, 97, 0.08);
+}
+
+.character-hair {
+  position: absolute;
+  left: 50%;
+  top: -8px;
+  transform: translateX(-50%);
+  width: 86px;
+  height: 36px;
+  border-radius: 50% 50% 32% 32%;
+}
+
+.character-hair::before,
+.character-hair::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: inherit;
+}
+.character-hair::before { left: 8px; }
+.character-hair::after { right: 8px; }
+
+.character-body {
+  position: absolute;
+  bottom: 0;
+  width: 68px;
+  height: 64px;
+  border-radius: 22px 22px 16px 16px;
+}
+
+.character-eye {
+  position: absolute;
+  top: 26px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(45, 36, 54, 0.85);
+}
+.character-eye.left { left: 22px; }
+.character-eye.right { right: 22px; }
+
+.character-smile {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  width: 16px;
+  height: 10px;
+  transform: translateX(-50%);
+  border-bottom: 3px solid rgba(45, 36, 54, 0.75);
+  border-radius: 0 0 18px 18px;
+}
+
+.character-card h4 {
+  padding: 16px 18px 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 26px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.character-card p {
+  padding: 4px 18px 18px;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--muted);
+}
+
+.gojo .character-hair,
+.gojo .character-hair::before,
+.gojo .character-hair::after { background: #f7f1ff; }
+.gojo .character-body { background: linear-gradient(180deg, #ddd1ff, #9d8af5); }
+
+.geto .character-hair,
+.geto .character-hair::before,
+.geto .character-hair::after { background: #413a58; }
+.geto .character-body { background: linear-gradient(180deg, #d6e6ff, #7aa8df); }
+
+.toji .character-hair,
+.toji .character-hair::before,
+.toji .character-hair::after { background: #302a35; }
+.toji .character-body { background: linear-gradient(180deg, #d4f4d4, #7fbf8d); }
+
+.nanami .character-hair,
+.nanami .character-hair::before,
+.nanami .character-hair::after { background: #3f3d43; }
+.nanami .character-body { background: linear-gradient(180deg, #edf0d2, #a7bd84); }
+
+.sukuna .character-hair,
+.sukuna .character-hair::before,
+.sukuna .character-hair::after { background: #412633; }
+.sukuna .character-body { background: linear-gradient(180deg, #f9d1d7, #d78aa4); }
+
+.choso .character-hair,
+.choso .character-hair::before,
+.choso .character-hair::after { background: #44354a; }
+.choso .character-body { background: linear-gradient(180deg, #ebd7ff, #b38ae5); }
+
+.megumi .character-hair,
+.megumi .character-hair::before,
+.megumi .character-hair::after { background: #283242; }
+.megumi .character-body { background: linear-gradient(180deg, #dfeeff, #8ab6ea); }
+
+.kuromi .character-hair,
+.kuromi .character-hair::before,
+.kuromi .character-hair::after { background: #2b2b37; }
+.kuromi .character-body { background: linear-gradient(180deg, #dcd7f9, #8e7ae8); }
+
+.cinnamoroll .character-hair,
+.cinnamoroll .character-hair::before,
+.cinnamoroll .character-hair::after { background: #f6f7ff; }
+.cinnamoroll .character-body { background: linear-gradient(180deg, #fff1d4, #ffcf5a); }
+
+.stitch .character-hair,
+.stitch .character-hair::before,
+.stitch .character-hair::after { background: #5d4a39; }
+.stitch .character-body { background: linear-gradient(180deg, #dbf6d5, #79c58d); }
+
+.collection-note {
+  margin-top: 18px;
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.collection-note strong {
+  color: var(--ink);
+}
+
 .about {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -672,6 +898,8 @@ button { font: inherit; }
   .art-card, .art-card:nth-child(2), .art-card:nth-child(3) { grid-column: span 1; margin-top: 0; }
   .art-card:nth-child(2) { margin-top: 35px; }
   .art-caption { flex-direction: column; gap: 7px; }
+  .character-collection { padding: 80px 6% 32px; }
+  .character-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .about { grid-template-columns: 1fr; gap: 30px; padding: 80px 7%; }
   .about-mark { font-size: 110px; }
   .contact { padding: 85px 20px; }
@@ -683,6 +911,7 @@ button { font: inherit; }
   .logo { font-size: 21px; letter-spacing: 2px; }
   .art-grid { grid-template-columns: 1fr; }
   .art-card:nth-child(2) { margin-top: 0; }
+  .character-grid { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -816,6 +1045,185 @@ button { font: inherit; }
         </div>
       </article>
     </div>
+  </section>
+
+  <section class="character-collection reveal" aria-label="Character gallery">
+    <div class="collection-shell">
+      <p class="collection-label">JUJUTSU KAISEN MEN</p>
+      <div class="character-grid">
+        <article class="character-card gojo">
+          <div class="character-art">
+            <div class="character-figure">
+              <div class="character-hair"></div>
+              <div class="character-face">
+                <span class="character-eye left"></span>
+                <span class="character-eye right"></span>
+                <span class="character-smile"></span>
+              </div>
+              <div class="character-body"></div>
+            </div>
+          </div>
+          <h4>Gojo Satoru</h4>
+          <p>Chibi Portrait</p>
+        </article>
+
+        <article class="character-card geto">
+          <div class="character-art">
+            <div class="character-figure">
+              <div class="character-hair"></div>
+              <div class="character-face">
+                <span class="character-eye left"></span>
+                <span class="character-eye right"></span>
+                <span class="character-smile"></span>
+              </div>
+              <div class="character-body"></div>
+            </div>
+          </div>
+          <h4>Geto Suguru</h4>
+          <p>Chibi Portrait</p>
+        </article>
+
+        <article class="character-card toji">
+          <div class="character-art">
+            <div class="character-figure">
+              <div class="character-hair"></div>
+              <div class="character-face">
+                <span class="character-eye left"></span>
+                <span class="character-eye right"></span>
+                <span class="character-smile"></span>
+              </div>
+              <div class="character-body"></div>
+            </div>
+          </div>
+          <h4>Toji Fushiguro</h4>
+          <p>Chibi Portrait</p>
+        </article>
+
+        <article class="character-card nanami">
+          <div class="character-art">
+            <div class="character-figure">
+              <div class="character-hair"></div>
+              <div class="character-face">
+                <span class="character-eye left"></span>
+                <span class="character-eye right"></span>
+                <span class="character-smile"></span>
+              </div>
+              <div class="character-body"></div>
+            </div>
+          </div>
+          <h4>Nanami Kento</h4>
+          <p>Chibi Portrait</p>
+        </article>
+
+        <article class="character-card sukuna">
+          <div class="character-art">
+            <div class="character-figure">
+              <div class="character-hair"></div>
+              <div class="character-face">
+                <span class="character-eye left"></span>
+                <span class="character-eye right"></span>
+                <span class="character-smile"></span>
+              </div>
+              <div class="character-body"></div>
+            </div>
+          </div>
+          <h4>Ryomen Sukuna</h4>
+          <p>Chibi Portrait</p>
+        </article>
+
+        <article class="character-card choso">
+          <div class="character-art">
+            <div class="character-figure">
+              <div class="character-hair"></div>
+              <div class="character-face">
+                <span class="character-eye left"></span>
+                <span class="character-eye right"></span>
+                <span class="character-smile"></span>
+              </div>
+              <div class="character-body"></div>
+            </div>
+          </div>
+          <h4>Choso</h4>
+          <p>Chibi Portrait</p>
+        </article>
+
+        <article class="character-card megumi">
+          <div class="character-art">
+            <div class="character-figure">
+              <div class="character-hair"></div>
+              <div class="character-face">
+                <span class="character-eye left"></span>
+                <span class="character-eye right"></span>
+                <span class="character-smile"></span>
+              </div>
+              <div class="character-body"></div>
+            </div>
+          </div>
+          <h4>Megumi Fushiguro</h4>
+          <p>Chibi Portrait</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="collection-shell">
+      <p class="collection-label">SANRIO CHARACTERS</p>
+      <div class="character-grid">
+        <article class="character-card kuromi">
+          <div class="character-art">
+            <div class="character-figure">
+              <div class="character-hair"></div>
+              <div class="character-face">
+                <span class="character-eye left"></span>
+                <span class="character-eye right"></span>
+                <span class="character-smile"></span>
+              </div>
+              <div class="character-body"></div>
+            </div>
+          </div>
+          <h4>Kuromi</h4>
+          <p>Kawaii Render</p>
+        </article>
+
+        <article class="character-card cinnamoroll">
+          <div class="character-art">
+            <div class="character-figure">
+              <div class="character-hair"></div>
+              <div class="character-face">
+                <span class="character-eye left"></span>
+                <span class="character-eye right"></span>
+                <span class="character-smile"></span>
+              </div>
+              <div class="character-body"></div>
+            </div>
+          </div>
+          <h4>Cinnamoroll</h4>
+          <p>Kawaii Render</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="collection-shell">
+      <p class="collection-label">DISNEY CHARACTER</p>
+      <div class="character-grid">
+        <article class="character-card stitch">
+          <div class="character-art">
+            <div class="character-figure">
+              <div class="character-hair"></div>
+              <div class="character-face">
+                <span class="character-eye left"></span>
+                <span class="character-eye right"></span>
+                <span class="character-smile"></span>
+              </div>
+              <div class="character-body"></div>
+            </div>
+          </div>
+          <h4>Stitch</h4>
+          <p>Chibi Render</p>
+        </article>
+      </div>
+    </div>
+
+    <p class="collection-note"><strong>Placeholder note:</strong> these character cards are stylized CSS placeholders so the gallery stays clean and functional without broken image links. To replace them, add your real character artwork files into a folder such as <strong>assets/characters</strong>, then swap the placeholder blocks for actual image elements.</p>
   </section>
 
   <section class="about" id="about">

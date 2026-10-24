@@ -1,54 +1,14 @@
-'''html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-content="width=device-width,
-initial-scale=1.0">
-  <title>kurogane- the space for independent artwork</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>kurogane - the space for independent artwork</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<!--Typograpghy: Cormorant
-Garamond (serif) & Montserrat
-(San-Serif)-->
-  <link rel="precorrect" href=
-"https://fonts.googleapis.com">
-  <link rel=" preconnect" href
-="https://fonts.gstatic.com"
-cross origin>
-  <link href="https://fonts
-.googleapis.com/css2?family
-=Cormorant+Garamond:ital
-,wght@0,400;0,500;0,600;0
-,700;1,400&family=Montserrat:
-wght@300;400;500;600;700&display=
-swap" rel="stylesheet">
-
-<!-- Tailwind CSS for Responsive Utility Styling -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'sage-bg': '#f2f7f4',
-            'pastel-green': '#d8e8dd',
-            'accent-sage': '#8fbc8f',
-            'dark-green': '#1b4332',
-            'deep-forest': '#0d2818',
-            'muted-green': '#52796f',
-            'soft-gold': '#d4af37'
-          },
-          fontFamily: {
-            heading: ['Cormorant Garamond', 'serif'],
-            body: ['Montserrat', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-
-  <style>
+<style>
     :root {
       --bg-light: #f2f7f4;
       --pastel-green: #d8e8dd;
@@ -56,754 +16,803 @@ swap" rel="stylesheet">
       --dark-green: #1b4332;
       --deep-forest: #0d2818;
       --card-bg: rgba(255, 255, 255, 0.88);
+      --text-dark: #1b4332;
+      --text-muted: #52796f;
       --font-heading: 'Cormorant Garamond', serif;
       --font-body: 'Montserrat', sans-serif;
     }
 
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       background-color: var(--bg-light);
-      color: var(--dark-green);
+      color: var(--text-dark);
       font-family: var(--font-body);
+      line-height: 1.6;
       overflow-x: hidden;
-      scroll-behavior: smooth;
     }
 
-    /* Subtle Line Pattern Background */
-    .bg-line-pattern {
-      background-image: 
-        linear-gradient(to right, rgba(27, 67, 50, 0.04) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(27, 67, 50, 0.04) 1px, transparent 1px);
-      background-size: 36px 36px;
-    }
-
-    /* Glassmorphism Card Style */
-    .glass-card {
-      background: rgba(255, 255, 255, 0.85);
+/* Elegant Navigation Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(242, 247, 244, 0.95);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(27, 67, 50, 0.12);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 3rem;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(27, 67, 50, 0.1);
+    }
+
+    .brand-logo {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--dark-green);
+    }
+
+    .brand-logo span {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    nav { display: flex; gap: 1.8rem; align-items: center; }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 500;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover { color: var(--accent-sage); }
+
+    .btn-primary {
+      background-color: var(--dark-green);
+      color: #fff;
+      padding: 0.6rem 1.4rem;
+      border-radius: 30px;
+      border: none;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+.btn-primary:hover {
+      background-color: var(--deep-forest);
+      transform: translateY(-2px);
+    }
+
+    .nav-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--dark-green);
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 2rem;
+      background: linear-gradient(180deg, var(--bg-light) 0%, var(--pastel-green) 100%);
+      margin-top: 60px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: 4rem;
+      font-weight: 400;
+      color: var(--dark-green);
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    /* Gallery Grid */
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 2.8rem;
+      text-align: center;
+      color: var(--dark-green);
+      margin: 4rem 0 2rem;
+    }
+.gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      padding: 0 4rem 4rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .art-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(27, 67, 50, 0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(13, 40, 24, 0.05);
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+
+    .art-card:hover { transform: translateY(-6px); }
+
+    .art-card img.post-media, .art-card video {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    .card-info { padding: 1.5rem; }
+.author-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 0.8rem;
+    }
+
+    .author-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--accent-sage);
+    }
+
+    .author-details span {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--dark-green);
+    }
+
+    .author-details small {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .card-info h3 {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      color: var(--dark-green);
+      margin-bottom: 0.3rem;
+    }
+
+    .card-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      border-top: 1px solid rgba(27, 67, 50, 0.1);
+      padding-top: 0.8rem;
+    }
+
+    .pin-btn, .comment-toggle {
+      background: none;
+      border: none;
+      color: var(--dark-green);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .delete-post-btn {
+      background: none;
+      border: none;
+      color: #a4262c;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .comment-section {
+      margin-top: 0.8rem;
+      display: none;
+      border-top: 1px dashed rgba(27,67,50,0.2);
+      padding-top: 0.6rem;
+    }
+
+    .comment-list {
+      max-height: 120px;
+      overflow-y: auto;
+      margin-bottom: 0.5rem;
+    }
+
+    .comment-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-size: 0.8rem;
+    }
+
+    .comment-avatar {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-top: 2px;
+    }
+
+    .comment-section input {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 0.8rem;
+      border: 1px solid var(--pastel-green);
+      border-radius: 6px;
+    }
+
+    /* Modals */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(13, 40, 24, 0.6);
+      backdrop-filter: blur(6px);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 2.5rem;
       border-radius: 16px;
+      max-width: 550px;
+      width: 90%;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+.modal-content h2 {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      color: var(--dark-green);
+      margin-bottom: 1.2rem;
     }
 
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
+    .form-group { margin-bottom: 1.1rem; }
+
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--dark-green);
+      margin-bottom: 0.3rem;
     }
-    ::-webkit-scrollbar-track {
+
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 0.7rem;
+      border: 1px solid var(--pastel-green);
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 1.2rem; right: 1.2rem;
+      background: none; border: none;
+      font-size: 1.5rem; color: var(--dark-green);
+      cursor: pointer;
+    }
+
+    .tutorial-box {
       background: var(--bg-light);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--pastel-green);
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--accent-sage);
+      border: 1px solid var(--accent-sage);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+      display: none;
     }
 
-    .modal-backdrop {
-      background: rgba(13, 40, 24, 0.65);
-      backdrop-filter: blur(8px);
+    .auth-tabs {
+      display: flex;
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid var(--pastel-green);
+    }
+
+    .auth-tab {
+      flex: 1;
+      padding: 0.6rem;
+      background: none;
+      border: none;
+      font-family: var(--font-body);
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+.auth-tab.active {
+      color: var(--dark-green);
+      border-bottom: 2px solid var(--dark-green);
     }
   </style>
 </head>
-<body class="bg-line-pattern min-h-screen flex flex-col justify-between text-dark-green">
+<body>
 
-<!-- ==================== HEADER / NAVIGATION ==================== -->
-  <header class="fixed top-0 left-0 right-0 z-40 bg-[#f2f7f4]/90 backdrop-blur-md border-b border-dark-green/10 transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
-      
-      <!-- Brand Logo -->
-      <a href="#hero" class="flex items-center gap-3 group text-left">
-        <div class="w-10 h-10 rounded-full bg-dark-green text-pastel-green flex items-center justify-center font-heading text-2xl font-bold border border-soft-gold/30 shadow-sm shrink-0 group-hover:bg-deep-forest transition-colors">
-          K
-        </div>
-        <div>
-          <span class="font-heading text-xl sm:text-2xl font-bold tracking-wider text-deep-forest block leading-none">
-            KUROGANE
-          </span>
-          <span class="text-[9px] sm:text-[10px] tracking-widest text-dark-green/80 uppercase block font-medium mt-1">
-            the space for independent artwork
-          </span>
-        </div>
-      </a>
-
-<!-- Navigation Links -->
-      <nav class="hidden md:flex items-center gap-6 text-xs uppercase tracking-widest font-semibold text-dark-green">
-        <a href="#gallery" class="hover:text-accent-sage transition-colors">Gallery</a>
-        <a href="#feed" class="hover:text-accent-sage transition-colors">Feed</a>
-        <a href="#queries" class="hover:text-accent-sage transition-colors">Queries & Suggestions</a>
-        <button onclick="openModal('admin-modal')" class="hover:text-soft-gold transition-colors flex items-center gap-1 text-dark-green/70">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-          Admin Studio
-        </button>
-      </nav>
-
-<!-- Action Buttons -->
-      <div class="flex items-center gap-3">
-        <button onclick="openUploadModal()" class="bg-dark-green text-white hover:bg-deep-forest px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all shadow-md hover:shadow-lg flex items-center gap-1.5">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-          Upload
-        </button>
-
-        <div id="auth-nav-container">
-          <!-- Dynamically filled by JS: Login button or User Profile Chip -->
-          <button onclick="openModal('auth-modal')" class="border border-dark-green/30 text-dark-green hover:bg-dark-green hover:text-white px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all">
-            Sign In
-          </button>
-        </div>
-      </div>
+  <!-- Header -->
+  <header>
+    <div class="brand-logo">
+      kurogane
+      <span>the space for independent artwork</span>
     </div>
+    <nav>
+      <a href="#gallery">Gallery</a>
+      <a onclick="openUploadModal()">Upload</a>
+      <a onclick="openModal('queries-modal')">Queries</a>
+      <a onclick="openModal('admin-modal')" style="color:var(--accent-sage);">Admin Studio</a>
+      <a id="nav-auth-btn" onclick="openAuthModal()" class="btn-primary" style="color:#fff; text-decoration:none;">Account</a>
+    </nav>
   </header>
 
-<main class="pt-20">
-    <!-- ==================== HERO SECTION ==================== -->
-    <section id="hero" class="relative min-h-[85vh] flex items-center justify-center text-center px-4 py-16 bg-gradient-to-b from-[#f2f7f4] via-[#d8e8dd]/40 to-[#f2f7f4]">
-      <div class="max-w-4xl mx-auto z-10">
-        <div class="inline-block px-4 py-1.5 rounded-full bg-white/80 border border-dark-green/15 text-dark-green text-xs font-medium uppercase tracking-widest mb-6 shadow-sm">
-          Independent Visual Arts Pavilion
-        </div>
-        <h1 class="font-heading text-5xl sm:text-7xl md:text-8xl font-normal text-deep-forest leading-tight mb-6">
-          kurogane- <br/>
-          <span class="italic font-light text-dark-green text-3xl sm:text-5xl md:text-6xl block mt-2">
-            the space for independent artwork
-          </span>
-        </h1>
-        <p class="text-sm sm:text-base text-muted-green max-w-2xl mx-auto mb-10 font-light leading-relaxed">
-          A serene space for anime-influenced character illustrations, costume studies, and community reference submissions. Share outfit ideas, save art pins, and collaborate.
-        </p>
+  <!-- Hero Banner -->
+  <section class="hero">
+    <h1>Independent Art & Reference Atelier</h1>
+    <p>A tranquil public space for independent anime illustrations, community reference submissions, and peaceful creative connection.</p>
+    <button class="btn-primary" onclick="openUploadModal()">Share Your Art / Reference</button>
+  </section>
 
-        <div class="flex flex-wrap justify-center gap-4">
-          <a href="#gallery" class="bg-dark-green text-white hover:bg-deep-forest px-8 py-3.5 rounded-full text-xs uppercase tracking-widest font-semibold transition-all shadow-lg hover:-translate-y-0.5">
-            Explore Gallery
-          </a>
-          <button onclick="openUploadModal()" class="bg-white text-dark-green hover:bg-pastel-green border border-dark-green/20 px-8 py-3.5 rounded-full text-xs uppercase tracking-widest font-semibold transition-all shadow-sm">
-            Submit Reference
-          </button>
-        </div>
-      </div>
-     </section>
-
-<!-- ==================== PUBLIC GALLERY ==================== -->
-    <section id="gallery" class="max-w-7xl mx-auto px-4 sm:px-6 py-20">
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-dark-green/10 pb-6">
-        <div>
-          <span class="text-xs font-semibold uppercase tracking-widest text-accent-sage block mb-2">Curated Portfolio</span>
-          <h2 class="font-heading text-4xl sm:text-5xl text-deep-forest font-light">Featured Artworks</h2>
-        </div>
-        <p class="text-xs text-muted-green mt-2 md:mt-0 max-w-md font-light">
-          Browse original character designs and stylized illustrations. Pin your favorite reference poses to your profile.
-        </p>
-      </div>
-
-      <!-- Gallery Grid -->
-      <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Sample Card 1 -->
-        <div class="glass-card overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="relative group overflow-hidden bg-pastel-green/30 h-72">
-              <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80" alt="Artwork" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <button onclick="togglePin(1, this)" class="absolute top-3 right-3 bg-white/90 hover:bg-white text-dark-green p-2.5 rounded-full shadow-md transition-all" title="Pin / Save Reference">
-                <svg class="w-4 h-4 pin-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
-              </button>
-            </div>
-            <div class="p-6">
-              <span class="text-[10px] uppercase tracking-widest text-muted-green font-semibold">Character Design</span>
-              <h3 class="font-heading text-2xl text-dark-green font-medium mt-1">Sage Garden Atelier</h3>
-              <p class="text-xs text-muted-green mt-2 font-light line-clamp-2">Stylized outfit study incorporating draped fabrics and botanical accents.</p>
+  <!-- Gallery Section -->
+  <section id="gallery">
+    <h2 class="section-title">Public Showcase</h2>
+    <div class="gallery-grid" id="public-gallery">
+      <!-- Default Sample Artwork Card -->
+      <div class="art-card" data-username="kurogane_artist">
+        <img class="post-media" src="https://via.placeholder.com/400x300/d8e8dd/1b4332?text=Kurogane+Independent+Art" alt="Sample Artwork">
+        <div class="card-info">
+          <div class="author-row">
+            <img class="author-avatar" src="https://via.placeholder.com/100/1b4332/d8e8dd?text=K" alt="Avatar">
+            <div class="author-details">
+              <span>@kurogane_artist</span>
+              <small>IG: @artist_ig • Pinterest: /art</small>
             </div>
           </div>
-          <div class="px-6 pb-6 pt-0 border-t border-dark-green/5 mt-4 flex items-center justify-between">
-            <span class="text-[11px] text-dark-green/70">By @KuroganeArtist</span>
-            <button onclick="toggleComments(1)" class="text-xs font-semibold text-dark-green hover:text-accent-sage flex items-center gap-1">
-              💬 <span id="comment-count-1">2</span> Comments
-            </button>
+          <h3>Botanical Streetwear Study</h3>
+          <p>Clean line art and botanical greens.</p>
+          <div class="card-actions">
+            <button class="pin-btn" onclick="alert('Pinned to your reference board!')">📌 Pin Reference</button>
+            <button class="comment-toggle" onclick="toggleComments(this)">💬 Comments (1)</button>
           </div>
-
-<!-- Comments Section (Hidden by default) -->
-          <div id="comments-1" class="hidden bg-pastel-green/20 p-4 border-t border-dark-green/10 text-xs">
-            <div id="comment-list-1" class="space-y-2 mb-3 max-h-36 overflow-y-auto pr-1">
-              <div class="bg-white/80 p-2 rounded border border-dark-green/10">
-                <strong class="text-dark-green">@Rin_Art:</strong> <span class="text-muted-green">The drapery and soft green lighting are incredible!</span>
-              </div>
-              <div class="bg-white/80 p-2 rounded border border-dark-green/10">
-                <strong class="text-dark-green">@Milo_D:</strong> <span class="text-muted-green">Pinned this for costume reference!</span>
+          <div class="comment-section" style="display:block;">
+            <div class="comment-list">
+              <div class="comment-item">
+                <img class="comment-avatar" src="https://via.placeholder.com/50/52796f/fff?text=F" alt="Avatar">
+                <div><strong>@art_lover:</strong> Absolutely stunning color scheme!</div>
               </div>
             </div>
-            <div class="flex gap-2">
-              <input type="text" id="comment-input-1" placeholder="Write a public comment..." class="w-full px-3 py-1.5 rounded border border-dark-green/20 text-xs bg-white focus:outline-none focus:border-dark-green">
-              <button onclick="addComment(1)" class="bg-dark-green text-white px-3 py-1.5 rounded text-xs hover:bg-deep-forest shrink-0">Post</button>
-            </div>
-          </div>
-        </div>
-
-<!-- Sample Card 2 -->
-        <div class="glass-card overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="relative group overflow-hidden bg-pastel-green/30 h-72">
-              <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=800&q=80" alt="Artwork" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <button onclick="togglePin(2, this)" class="absolute top-3 right-3 bg-white/90 hover:bg-white text-dark-green p-2.5 rounded-full shadow-md transition-all" title="Pin / Save Reference">
-                <svg class="w-4 h-4 pin-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
-              </button>
-            </div>
-            <div class="p-6">
-              <span class="text-[10px] uppercase tracking-widest text-muted-green font-semibold">Reference Submission</span>
-              <h3 class="font-heading text-2xl text-dark-green font-medium mt-1">Urban Streetwear Concept</h3>
-              <p class="text-xs text-muted-green mt-2 font-light line-clamp-2">Community submitted outfit reference photo for future chibi artwork adaptation.</p>
-            </div>
-          </div>
-          <div class="px-6 pb-6 pt-0 border-t border-dark-green/5 mt-4 flex items-center justify-between">
-            <span class="text-[11px] text-dark-green/70">By @FanCreator</span>
-            <button onclick="toggleComments(2)" class="text-xs font-semibold text-dark-green hover:text-accent-sage flex items-center gap-1">
-              💬 <span id="comment-count-2">1</span> Comments
-            </button>
-          </div>
-
-<!-- Comments Section 2 -->
-          <div id="comments-2" class="hidden bg-pastel-green/20 p-4 border-t border-dark-green/10 text-xs">
-            <div id="comment-list-2" class="space-y-2 mb-3 max-h-36 overflow-y-auto pr-1">
-              <div class="bg-white/80 p-2 rounded border border-dark-green/10">
-                <strong class="text-dark-green">@KuroganeArtist:</strong> <span class="text-muted-green">Love the jacket silhouette! Adding to drawing list.</span>
-              </div>
-            </div>
-            <div class="flex gap-2">
-              <input type="text" id="comment-input-2" placeholder="Write a public comment..." class="w-full px-3 py-1.5 rounded border border-dark-green/20 text-xs bg-white focus:outline-none focus:border-dark-green">
-              <button onclick="addComment(2)" class="bg-dark-green text-white px-3 py-1.5 rounded text-xs hover:bg-deep-forest shrink-0">Post</button>
-            </div>
+            <input type="text" placeholder="Add a public comment..." onkeypress="handleComment(event, this)">
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-<!-- ==================== PUBLIC COMMUNITY FEED ==================== -->
-    <section id="feed" class="bg-pastel-green/20 py-20 border-y border-dark-green/10">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <div class="text-center max-w-2xl mx-auto mb-12">
-          <span class="text-xs font-semibold uppercase tracking-widest text-accent-sage block mb-2">Live Upload Feed</span>
-          <h2 class="font-heading text-4xl sm:text-5xl text-deep-forest font-light">Community Reference Submissions</h2>
-          <p class="text-xs text-muted-green mt-3 font-light">
-            All registered creators share photos and video clips ($\le 10$ mins) for artwork reference.
-          </p>
+  <!-- Upload Modal -->
+  <div class="modal" id="upload-modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal('upload-modal')">&times;</button>
+      <h2>Upload New Post</h2>
+      
+      <div class="tutorial-box" id="upload-tutorial">
+        <p><strong>Quick Guide:</strong> Drop an image or video ($\le 10$ mins), add your social handles, and agree to public terms! <button onclick="skipTutorialForever()" style="background:none; border:none; color:var(--dark-green); text-decoration:underline; cursor:pointer; margin-left:8px;">Skip Forever</button></p>
+</div>
+
+      <form id="upload-form" onsubmit="handleUploadSubmit(event)">
+        <div class="form-group">
+          <label>Title / Character Name</label>
+          <input type="text" id="up-title" required placeholder="e.g. Cyberpunk Study">
+        </div>
+        <div class="form-group">
+          <label>Image or Video File (Videos max 10 mins)</label>
+          <input type="file" id="media-input" accept="image/*,video/*" required>
+        </div>
+        <div class="form-group">
+          <label>Social Handles (Optional)</label>
+          <input type="text" id="up-socials" placeholder="IG: @handle | Pinterest: /handle | Discord: user#0000">
+        </div>
+        <div class="form-group" style="display:flex; gap:0.5rem; align-items:center;">
+          <input type="checkbox" id="terms-check" required>
+          <label for="terms-check" style="margin:0; font-size:0.8rem;">I agree to the Terms (All accounts & uploads are public, no private profiles, 10-min max video limit, reference adaptation rights).</label>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;">Publish Post</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Queries & Suggestions Modal -->
+  <div class="modal" id="queries-modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal('queries-modal')">&times;</button>
+      <h2>Suggestions & Queries</h2>
+      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Send questions or collaboration ideas directly to the creator's private inbox.</p>
+      <form onsubmit="submitQuery(event)">
+        <div class="form-group">
+          <label>Your Name or Username</label>
+          <input type="text" required placeholder="@username or name">
+        </div>
+        <div class="form-group">
+          <label>Message / Suggestion</label>
+          <textarea rows="4" required placeholder="Type your message here..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;">Send to Creator</button>
+      </form>
+    </div>
+  </div>
+<!-- Account Modal (Login / Signup / Logout / Delete) -->
+  <div class="modal" id="auth-modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal('auth-modal')">&times;</button>
+      
+      <div id="auth-forms-container">
+        <div class="auth-tabs">
+          <button class="auth-tab active" onclick="switchAuthTab('login')">Sign In</button>
+          <button class="auth-tab" onclick="switchAuthTab('signup')">Create Account</button>
         </div>
 
-        <div id="user-feed-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Dynamic user posts rendered here -->
-        </div>
-      </div>
-    </section>
-
-<!-- ==================== PRIVATE SUGGESTIONS & QUERIES ==================== -->
-    <section id="queries" class="max-w-4xl mx-auto px-4 sm:px-6 py-20">
-      <div class="glass-card p-8 sm:p-12 shadow-md">
-        <div class="text-center max-w-xl mx-auto mb-8">
-          <span class="text-xs font-semibold uppercase tracking-widest text-accent-sage block mb-1">Direct Communication</span>
-          <h2 class="font-heading text-3xl sm:text-4xl text-deep-forest font-medium">Private Suggestions & Queries</h2>
-          <p class="text-xs text-muted-green font-light mt-2">
-            Have a question, feedback, or custom artwork request? Send a message directly. **Messages are viewable and responded to exclusively by the artist.**
-          </p>
-        </div>
-
-        <form id="suggestion-form" onsubmit="submitSuggestion(event)" class="space-y-4">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs font-medium text-dark-green mb-1">Your Name / Handle</label>
-              <input type="text" id="sug-name" required placeholder="@username or Name" class="w-full px-4 py-2.5 rounded-lg border border-dark-green/20 bg-white/90 text-xs focus:outline-none focus:border-dark-green">
-            </div>
-            <div>
-              <label class="block text-xs font-medium text-dark-green mb-1">Email or Phone ID</label>
-              <input type="text" id="sug-contact" required placeholder="To receive response..." class="w-full px-4 py-2.5 rounded-lg border border-dark-green/20 bg-white/90 text-xs focus:outline-none focus:border-dark-green">
-            </div>
+        <!-- Login Form -->
+        <form id="login-form" onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label>Email ID</label>
+            <input type="email" id="login-email" required placeholder="name@example.com">
           </div>
-
-          <div>
-            <label class="block text-xs font-medium text-dark-green mb-1">Subject</label>
-            <input type="text" id="sug-subject" required placeholder="Artwork Inquiry, Outfit Idea, Feedback..." class="w-full px-4 py-2.5 rounded-lg border border-dark-green/20 bg-white/90 text-xs focus:outline-none focus:border-dark-green">
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="login-password" required placeholder="••••••••">
           </div>
+          <button type="submit" class="btn-primary" style="width:100%;">Sign In</button>
+        </form>
 
-          <div>
-            <label class="block text-xs font-medium text-dark-green mb-1">Message / Query</label>
-            <textarea id="sug-message" rows="4" required placeholder="Type your private message here..." class="w-full px-4 py-2.5 rounded-lg border border-dark-green/20 bg-white/90 text-xs focus:outline-none focus:border-dark-green"></textarea>
+        <!-- Signup Form -->
+        <form id="signup-form" onsubmit="handleSignup(event)" style="display:none;">
+          <div class="form-group">
+            <label>Unique Username</label>
+            <input type="text" id="signup-username" required placeholder="@your_handle">
           </div>
-
-          <button type="submit" class="w-full bg-dark-green text-white hover:bg-deep-forest py-3 rounded-lg text-xs font-semibold uppercase tracking-widest transition-all shadow-md">
-            Send Private Message 🔒
-          </button>
+          <div class="form-group">
+            <label>Profile Picture</label>
+            <input type="file" id="signup-avatar" accept="image/*" required>
+          </div>
+          <div class="form-group">
+            <label>Email ID</label>
+            <input type="email" id="signup-email" required placeholder="name@example.com">
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="signup-password" required placeholder="Create password">
+          </div>
+          <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="password" id="signup-password-confirm" required placeholder="Re-enter password">
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%;">Create Account</button>
         </form>
       </div>
-    </section>
-  </main>
 
-<!-- ==================== FOOTER ==================== -->
-  <footer class="bg-deep-forest text-pastel-green py-12 border-t border-soft-gold/20">
-    <div class="max-w-7xl mx-auto px-6 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-6">
-      <div>
-        <h3 class="font-heading text-2xl text-white font-semibold tracking-wider">KUROGANE</h3>
-        <p class="text-xs text-pastel-green/70 mt-1 font-light">the space for independent artwork • Public Art Community</p>
-      </div>
-      <div class="text-xs text-pastel-green/60 font-light text-center md:text-right">
-        <p>&copy; 2026 Kurogane Atelier. All rights reserved.</p>
-        <p class="mt-1">All accounts and gallery uploads are public. Terms & Conditions apply.</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ==================== MODALS ==================== -->
-
-  <!-- 1. AUTHENTICATION & ACCOUNT MANAGEMENT MODAL -->
-  <div id="auth-modal" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-4">
-    <div class="glass-card bg-white max-w-md w-full p-8 relative shadow-2xl">
-      <button onclick="closeModal('auth-modal')" class="absolute top-4 right-4 text-dark-green/60 hover:text-dark-green text-xl">&times;</button>
-      
-      <div class="text-center mb-6">
-        <h2 class="font-heading text-3xl text-deep-forest font-semibold">Join Kurogane</h2>
-        <p class="text-xs text-muted-green mt-1">Create an account or sign in to upload media & pin artworks.</p>
-      </div>
-
-      <form id="auth-form" onsubmit="handleAuthSubmit(event)" class="space-y-3">
-        <div>
-          <label class="block text-xs font-medium text-dark-green mb-1">Email ID or Phone Number</label>
-          <input type="text" id="auth-identifier" required placeholder="email@domain.com or +123456789" class="w-full px-3.5 py-2 rounded-lg border border-dark-green/20 text-xs bg-white focus:outline-none focus:border-dark-green">
-        </div>
-
-        <div>
-          <label class="block text-xs font-medium text-dark-green mb-1">Password</label>
-          <input type="password" id="auth-password" required placeholder="••••••••" class="w-full px-3.5 py-2 rounded-lg border border-dark-green/20 text-xs bg-white focus:outline-none focus:border-dark-green">
-        </div>
-
-        <!-- Optional Social Profiles -->
-        <div class="pt-2 border-t border-dark-green/10">
-          <span class="block text-[11px] font-semibold text-dark-green mb-2">Connect Social Profiles (Optional)</span>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-            <input type="text" id="auth-insta" placeholder="Insta @id" class="px-2.5 py-1.5 rounded border border-dark-green/20 text-[11px] bg-white">
-            <input type="text" id="auth-pinterest" placeholder="Pinterest Link" class="px-2.5 py-1.5 rounded border border-dark-green/20 text-[11px] bg-white">
-            <input type="text" id="auth-discord" placeholder="Discord Tag" class="px-2.5 py-1.5 rounded border border-dark-green/20 text-[11px] bg-white">
-          </div>
-        </div>
-
-<!-- MANDATORY TERMS CHECKBOX -->
-        <div class="pt-3 flex items-start gap-2">
-          <input type="checkbox" id="auth-terms" required class="mt-0.5 rounded border-dark-green/30 text-dark-green focus:ring-accent-sage">
-          <label for="auth-terms" class="text-[11px] text-muted-green leading-snug">
-            I accept the <a href="#" onclick="openModal('terms-modal'); return false;" class="text-dark-green font-semibold underline">Terms & Conditions</a>: All posts/accounts are **public**, videos $\le 10$ mins, and photos may be used as reference for artwork.
-          </label>
-        </div>
-
-        <button type="submit" class="w-full bg-dark-green text-white hover:bg-deep-forest py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all mt-4">
-          Create Account / Sign In
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- 2. TERMS & CONDITIONS MODAL -->
-  <div id="terms-modal" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-4">
-    <div class="glass-card bg-white max-w-lg w-full p-8 relative max-h-[85vh] overflow-y-auto">
-      <button onclick="closeModal('terms-modal')" class="absolute top-4 right-4 text-dark-green/60 hover:text-dark-green text-xl">&times;</button>
-      
-      <h2 class="font-heading text-3xl text-deep-forest font-semibold mb-4">Terms & Conditions</h2>
-      
-      <div class="text-xs text-muted-green space-y-3 leading-relaxed">
-        <p><strong class="text-dark-green">1. Public Platform Policy:</strong> Every profile, image, video, and comment published on Kurogane is strictly public. There are no private user profiles.</p>
-        <p><strong class="text-dark-green">2. Media Upload Formats & Restrictions:</strong> Users can upload image files (`.png`, `.jpg`, `.webp`) and video clips (`.mp4`, `.mov`). Video uploads **must not exceed 10 minutes (600 seconds)** in duration.</p>
-        <p><strong class="text-dark-green">3. Artwork Adaptation Rights:</strong> By uploading reference photos or costume designs, you grant Kurogane non-exclusive permission to use your submissions as drawing references for original anime/chibi artwork.</p>
-        <p><strong class="text-dark-green">4. Full User Account Control:</strong> Users have full authority to log in, log out, or **delete their account and associated uploaded media at any given time** directly through profile settings.</p>
-        <p><strong class="text-dark-green">5. Respect & Content Guidelines:</strong> Strictly no explicit, violent, or copyrighted commercial material.</p>
-      </div>
-
-      <button onclick="closeModal('terms-modal')" class="w-full mt-6 bg-dark-green text-white py-2 rounded text-xs font-semibold uppercase">
-        Understood & Agree
-      </button>
-    </div>
-  </div>
-
-<!-- 3. SMART SKIPPABLE UPLOAD TUTORIAL MODAL -->
-  <div id="tutorial-modal" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-4">
-    <div class="glass-card bg-white max-w-md w-full p-8 relative border-2 border-accent-sage">
-      <div class="text-center">
-        <span class="text-3xl">🌸</span>
-        <h3 class="font-heading text-3xl text-deep-forest font-semibold mt-2">First-Time Uploader Guide</h3>
-        <p class="text-xs text-muted-green mt-2 leading-relaxed">
-          Welcome! Here is a quick 3-step tip for sharing reference photos and videos:
-        </p>
-      </div>
-
-      <div class="my-6 space-y-3 text-xs text-dark-green">
-        <div class="flex items-start gap-2.5 p-2.5 rounded bg-pastel-green/30">
-          <span class="font-bold bg-dark-green text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] shrink-0">1</span>
-          <span>Select an image or video file ($\le 10$ minute length limit).</span>
-        </div>
-        <div class="flex items-start gap-2.5 p-2.5 rounded bg-pastel-green/30">
-          <span class="font-bold bg-dark-green text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] shrink-0">2</span>
-          <span>Add costume details or social handles (Instagram, Pinterest, Discord).</span>
-        </div>
-        <div class="flex items-start gap-2.5 p-2.5 rounded bg-pastel-green/30">
-          <span class="font-bold bg-dark-green text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] shrink-0">3</span>
-          <span>Click upload! Your post will appear immediately in the public feed.</span>
-        </div>
-      </div>
-
-      <div class="flex gap-3">
-        <button onclick="skipTutorialForever()" class="w-1/2 border border-dark-green/30 text-dark-green py-2 rounded text-xs font-semibold hover:bg-dark-green/10">
-          Skip Tutorial Forever
-        </button>
-        <button onclick="proceedToUpload()" class="w-1/2 bg-dark-green text-white py-2 rounded text-xs font-semibold hover:bg-deep-forest">
-          Got It, Continue
-        </button>
+      <!-- Logged In Active State -->
+      <div id="account-active-view" style="display:none; text-align:center;">
+        <img id="active-avatar-display" src="" alt="Profile Avatar" style="width:70px; height:70px; border-radius:50%; object-fit:cover; border:2px solid var(--dark-green); margin:0 auto 10px auto;">
+        <h3 style="font-family:var(--font-heading); color:var(--dark-green); font-size:1.8rem; margin-bottom:0.5rem;" id="active-username-display">@username</h3>
+        <p style="margin-bottom:1.5rem; color:var(--text-muted); font-size:0.85rem;">You are signed in. Your uploads will remain active until you delete them.</p>
+        <button class="btn-primary" onclick="handleLogout()" style="background:#52796f; margin-bottom:0.8rem; width:100%;">Log Out</button>
+        <button class="btn-primary" onclick="deleteAccountAndPosts()" style="background:#a4262c; width:100%;">Delete Account & All Posts</button>
       </div>
     </div>
   </div>
 
-<!-- 4. INSTAGRAM/PINTEREST STYLE UPLOAD MODAL -->
-  <div id="upload-modal" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-4">
-    <div class="glass-card bg-white max-w-lg w-full p-8 relative shadow-2xl">
-      <button onclick="closeModal('upload-modal')" class="absolute top-4 right-4 text-dark-green/60 hover:text-dark-green text-xl">&times;</button>
-      
-      <h2 class="font-heading text-3xl text-deep-forest font-semibold mb-2">Create New Submission</h2>
-      <p class="text-xs text-muted-green mb-6">Upload photos or video clips ($\le 10$ mins) for artwork reference.</p>
-
-      <form id="upload-form" onsubmit="handleUploadSubmit(event)" class="space-y-4">
-        <!-- File Drag-and-Drop Dropzone -->
-        <div class="border-2 border-dashed border-dark-green/30 rounded-xl p-6 text-center bg-pastel-green/10 hover:bg-pastel-green/20 transition-colors cursor-pointer" onclick="document.getElementById('file-input').click()">
-          <svg class="w-10 h-10 mx-auto text-dark-green/60 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-          <span class="text-xs font-semibold text-dark-green block">Click or Drag Image/Video Here</span>
-          <span class="text-[10px] text-muted-green block mt-1">PNG, JPG, MP4, MOV (Max video duration: 10 mins)</span>
-          <input type="file" id="file-input" accept="image/*,video/*" required class="hidden" onchange="validateMediaFile(this)">
+  <!-- Admin Studio Modal -->
+  <div class="modal" id="admin-modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal('admin-modal')">&times;</button>
+      <h2>Private Admin Studio</h2>
+      <div id="admin-login">
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Restricted to the platform owner.</p>
+        <div class="form-group">
+          <label>Admin Passkey</label>
+          <input type="password" id="admin-pass" placeholder="Enter admin password">
         </div>
-
-        <div id="file-status" class="hidden text-xs text-accent-sage font-semibold">✓ File selected & validated</div>
-
-        <div>
-          <label class="block text-xs font-medium text-dark-green mb-1">Title / Outfit Concept</label>
-          <input type="text" id="upload-title" required placeholder="e.g. Traditional Kimono Study" class="w-full px-3.5 py-2 rounded-lg border border-dark-green/20 text-xs bg-white focus:outline-none focus:border-dark-green">
-        </div>
-
-        <div>
-          <label class="block text-xs font-medium text-dark-green mb-1">Description / Style Notes</label>
-
-<textarea id="upload-desc" rows="2" placeholder="Mention pose ideas, colors, or costume details..." class="w-full px-3.5 py-2 rounded-lg border border-dark-green/20 text-xs bg-white focus:outline-none focus:border-dark-green"></textarea>
-        </div>
-
-        <button type="submit" class="w-full bg-dark-green text-white hover:bg-deep-forest py-3 rounded-lg text-xs font-semibold uppercase tracking-widest transition-all shadow-md">
-          Publish to Public Feed ✨
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- 5. PRIVATE ADMIN STUDIO MODAL (OWNER ACCESS ONLY) -->
-  <div id="admin-modal" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-4">
-    <div class="glass-card bg-white max-w-3xl w-full p-8 relative max-h-[90vh] overflow-y-auto">
-      <button onclick="closeModal('admin-modal')" class="absolute top-4 right-4 text-dark-green/60 hover:text-dark-green text-xl">&times;</button>
-      
-      <div class="flex items-center gap-2 mb-2">
-        <span class="text-xs px-2 py-0.5 rounded bg-soft-gold/20 text-dark-green font-bold">PRIVATE</span>
-        <h2 class="font-heading text-3xl text-deep-forest font-semibold">Admin Studio Panel</h2>
+        <button class="btn-primary" onclick="verifyAdmin()" style="width:100%;">Access Studio</button>
       </div>
-      <p class="text-xs text-muted-green mb-6">Owner inbox for private queries and platform moderation.</p>
-
-      <!-- Admin Passkey Screen -->
-      <div id="admin-lock-screen" class="space-y-4">
-        <p class="text-xs text-dark-green">Enter owner passkey to access private suggestions & queries inbox:</p>
-        <div class="flex gap-2">
-          <input type="password" id="admin-passkey" placeholder="Enter passkey (Default: kurogane2026)" class="w-full px-3.5 py-2 rounded border border-dark-green/20 text-xs">
-          <button onclick="unlockAdminStudio()" class="bg-dark-green text-white px-4 py-2 rounded text-xs font-semibold">Unlock</button>
+      <div id="admin-dashboard" style="display:none;">
+        <h3 style="color:var(--dark-green); margin-bottom:0.5rem; font-family:var(--font-heading);">Private Inbox (Suggestions & Queries)</h3>
+        <div id="admin-inbox-list" style="background:var(--bg-light); padding:1rem; border-radius:8px; max-height:200px; overflow-y:auto; font-size:0.85rem; margin-bottom:1rem;">
+          <p><strong>@art_lover:</strong> Love the new botanical illustrations! Will there be prints available?</p>
         </div>
-      </div>
-
-      <!-- Private Inbox Content (Revealed upon key check) -->
-      <div id="admin-content" class="hidden space-y-6">
-        <div class="border-b border-dark-green/10 pb-4 flex justify-between items-center">
-          <h3 class="font-heading text-2xl text-dark-green">Private Suggestions Inbox</h3>
-          <span class="text-xs text-muted-green"><span id="inbox-count">1</span> Messages</span>
-        </div>
-
-        <div id="admin-message-list" class="space-y-4">
-          <!-- Dynamic suggestion messages -->
-          <div class="p-4 rounded-xl border border-dark-green/15 bg-pastel-green/20 text-xs space-y-2">
-            <div class="flex justify-between font-semibold text-dark-green">
-              <span>From: @ArtLover (artlover@domain.com)</span>
-              <span class="text-[10px] text-muted-green">Today, 2:15 PM</span>
-            </div>
-            <div class="font-bold text-deep-forest">Subject: Custom Chibi Commission Question</div>
-            <p class="text-muted-green">Hi! Would love to know if you are taking reference requests for fantasy armor designs?</p>
-            <button onclick="alert('Replying feature queued for email send.')" class="bg-dark-green text-white px-3 py-1 rounded text-[11px] hover:bg-deep-forest">Reply Privately</button>
-          </div>
-        </div>
+        <h3 style="color:var(--dark-green); margin-bottom:0.5rem; font-family:var(--font-heading);">Quick Master Upload</h3>
+        <button class="btn-primary" onclick="closeModal('admin-modal'); openUploadModal();" style="width:100%;">Upload Master Artwork</button>
       </div>
     </div>
   </div>
+<script>
+    // Global User Session State (Stored as Object: { username, avatar })
+    let currentUser = JSON.parse(localStorage.getItem('kurogane_current_user')) || null;
 
-<!-- ==================== JAVASCRIPT LOGIC ==================== -->
-  <script>
-    // App State Management
-    let currentUser = null;
-    let pinnedPosts = new Set();
-    let userSubmissions = [
-      {
-        id: 101,
-        author: "@Sora_Design",
-        title: "Traditional Haori Style Reference",
-        desc: "High resolution fabric drape study for anime character creation.",
-        mediaType: "image",
-        mediaUrl: "https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?auto=format&fit=crop&w=800&q=80",
-        comments: []
-      }
-    ];
+    window.onload = function() {
+      updateNavAuth();
+    };
 
-    // Modal Handlers
-    function openModal(id) {
-      document.getElementById(id).classList.remove('hidden');
-    }
-    function closeModal(id) {
-      document.getElementById(id).classList.add('hidden');
-    }
+    function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 
-    // Smart Skippable Tutorial Check
-    function openUploadModal() {
-      const skipTutorial = localStorage.getItem('skipUploadTutorial');
-      if (!skipTutorial) {
-        openModal('tutorial-modal');
+    function openAuthModal() {
+      openModal('auth-modal');
+      if (currentUser) {
+        document.getElementById('auth-forms-container').style.display = 'none';
+        document.getElementById('account-active-view').style.display = 'block';
+        document.getElementById('active-username-display').innerText = currentUser.username;
+        document.getElementById('active-avatar-display').src = currentUser.avatar;
       } else {
-        openModal('upload-modal');
+        document.getElementById('auth-forms-container').style.display = 'block';
+        document.getElementById('account-active-view').style.display = 'none';
+      }
+    }
+
+    function switchAuthTab(tab) {
+      if (tab === 'login') {
+        document.getElementById('login-form').style.display = 'block';
+        document.getElementById('signup-form').style.display = 'none';
+        document.querySelectorAll('.auth-tab')[0].classList.add('active');
+        document.querySelectorAll('.auth-tab')[1].classList.remove('active');
+      } else {
+        document.getElementById('login-form').style.display = 'none';
+        document.getElementById('signup-form').style.display = 'block';
+        document.querySelectorAll('.auth-tab')[1].classList.add('active');
+        document.querySelectorAll('.auth-tab')[0].classList.remove('active');
+      }
+    }
+
+    // Signup with password confirmation, username & profile picture
+    function handleSignup(e) {
+      e.preventDefault();
+      const username = document.getElementById('signup-username').value.trim();
+      const email = document.getElementById('signup-email').value;
+      const pass = document.getElementById('signup-password').value;
+      const confirmPass = document.getElementById('signup-password-confirm').value;
+      const avatarInput = document.getElementById('signup-avatar');
+
+      if (pass !== confirmPass) {
+        alert('Passwords do not match! Please check and try again.');
+        return;
+      }
+if (avatarInput.files && avatarInput.files[0]) {
+        const avatarURL = URL.createObjectURL(avatarInput.files[0]);
+        currentUser = { username, avatar: avatarURL };
+        localStorage.setItem('kurogane_user_' + email, JSON.stringify({ username, pass, avatar: avatarURL }));
+        localStorage.setItem('kurogane_current_user', JSON.stringify(currentUser));
+
+        alert(`Account created successfully! Welcome, ${username}`);
+        closeModal('auth-modal');
+        updateNavAuth();
+      }
+    }
+
+    // Login recognition
+    function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value;
+      const pass = document.getElementById('login-password').value;
+
+      const savedData = localStorage.getItem('kurogane_user_' + email);
+      if (savedData) {
+        const userObj = JSON.parse(savedData);
+        if (userObj.pass === pass) {
+          currentUser = { username: userObj.username, avatar: userObj.avatar || 'https://via.placeholder.com/100/1b4332/d8e8dd?text=U' };
+          localStorage.setItem('kurogane_current_user', JSON.stringify(currentUser));
+          alert(`Welcome back, ${currentUser.username}!`);
+          closeModal('auth-modal');
+          updateNavAuth();
+          return;
+        }
+      }
+      alert('Invalid email or password. Please check your credentials or create an account.');
+    }
+
+    function handleLogout() {
+      currentUser = null;
+      localStorage.removeItem('kurogane_current_user');
+      alert('Logged out successfully.');
+      closeModal('auth-modal');
+      updateNavAuth();
+    }
+
+    function updateNavAuth() {
+      const btn = document.getElementById('nav-auth-btn');
+      if (currentUser) {
+        btn.innerHTML = `<img class="nav-avatar" src="${currentUser.avatar}" alt="Avatar"> ${currentUser.username}`;
+      } else {
+        btn.innerHTML = 'Account';
+      }
+    }
+
+    function deleteAccountAndPosts() {
+      if (confirm('Are you sure you want to delete your account? All your uploaded artworks will be permanently removed.')) {
+        const cards = document.querySelectorAll('.art-card');
+        cards.forEach(card => {
+          if (card.getAttribute('data-username') === currentUser.username) {
+            card.remove();
+          }
+        });
+        currentUser = null;
+        localStorage.removeItem('kurogane_current_user');
+        alert('Account and associated uploads deleted.');
+        closeModal('auth-modal');
+        updateNavAuth();
+      }
+    }
+
+    // Upload & Tutorial Logic
+    function openUploadModal() {
+      if (!currentUser) {
+        alert('Please sign in or create an account before uploading artworks.');
+        openAuthModal();
+        return;
+      }
+      openModal('upload-modal');
+      const skipped = localStorage.getItem('kurogane_skip_tutorial');
+      if (!skipped) {
+        document.getElementById('upload-tutorial').style.display = 'block';
+      } else {
+        document.getElementById('upload-tutorial').style.display = 'none';
       }
     }
 
     function skipTutorialForever() {
-      localStorage.setItem('skipUploadTutorial', 'true');
-      closeModal('tutorial-modal');
-      openModal('upload-modal');
+      localStorage.setItem('kurogane_skip_tutorial', 'true');
+      document.getElementById('upload-tutorial').style.display = 'none';
     }
-
-    function proceedToUpload() {
-      closeModal('tutorial-modal');
-      openModal('upload-modal');
-    }
-
-    // Video Duration & Format Validation ($\le 10$ minutes = 600s)
-    function validateMediaFile(input) {
-      const file = input.files[0];
-      const statusEl = document.getElementById('file-status');
-      if (!file) return;
-
-      if (file.type.startsWith('video/')) {
+// Video 10-minute check
+    document.getElementById('media-input').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file && file.type.startsWith('video/')) {
         const video = document.createElement('video');
         video.preload = 'metadata';
         video.onloadedmetadata = function() {
           window.URL.revokeObjectURL(video.src);
           if (video.duration > 600) {
-            alert('Video duration exceeds the 10-minute limit (600 seconds). Please select a shorter video.');
-            input.value = '';
-            statusEl.classList.add('hidden');
-          } else {
-            statusEl.classList.remove('hidden');
-            statusEl.innerText = `✓ Video validated (${Math.round(video.duration)}s / 600s max)`;
+            alert('Videos must be 10 minutes or shorter.');
+            e.target.value = '';
           }
         };
         video.src = URL.createObjectURL(file);
-      } else if (file.type.startsWith('image/')) {
-        statusEl.classList.remove('hidden');
-        statusEl.innerText = '✓ Image file selected';
-      } else {
-        alert('Please upload an image or video file only.');
-        input.value = '';
-        statusEl.classList.add('hidden');
       }
-    }
+    });
 
-    // Account & Authentication Handler
-    function handleAuthSubmit(e) {
-      e.preventDefault();
-      const identifier = document.getElementById('auth-identifier').value;
-      const termsChecked = document.getElementById('auth-terms').checked;
-
-      if (!termsChecked) {
-        alert('You must accept the Terms & Conditions to create an account.');
-        return;
-      }
-
-      currentUser = {
-        id: identifier,
-        insta: document.getElementById('auth-insta').value,
-        pinterest: document.getElementById('auth-pinterest').value,
-        discord: document.getElementById('auth-discord').value
-      };
-
-      updateNavUser();
-      closeModal('auth-modal');
-      alert(`Welcome to Kurogane, ${identifier}! Your account is active.`);
-    }
-
-    function updateNavUser() {
-      const navContainer = document.getElementById('auth-nav-container');
-      if (currentUser) {
-        navContainer.innerHTML = `
-          <div class="flex items-center gap-2">
-            <span class="text-xs font-semibold text-dark-green">👤 ${currentUser.id}</span>
-            <button onclick="logout()" class="text-[10px] text-red-700 hover:underline">Logout / Delete Account</button>
-          </div>
-        `;
-      } else {
-        navContainer.innerHTML = `
-          <button onclick="openModal('auth-modal')" class="border border-dark-green/30 text-dark-green hover:bg-dark-green hover:text-white px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all">
-            Sign In
-          </button>
-        `;
-      }
-    }
-
-    function logout() {
-      if (confirm('Do you want to log out or delete account data from this session?')) {
-        currentUser = null;
-        updateNavUser();
-        alert('Logged out safely.');
-      }
-    }
-
-    // Upload Post Submission
+    // Handle Upload Submission (Persistent with Profile Pic & Socials)
     function handleUploadSubmit(e) {
       e.preventDefault();
-      const title = document.getElementById('upload-title').value;
-      const desc = document.getElementById('upload-desc').value;
-      const fileInput = document.getElementById('file-input');
+      const title = document.getElementById('up-title').value;
+      const socials = document.getElementById('up-socials').value || 'No socials linked';
+      const fileInput = document.getElementById('media-input');
+      
+      if(fileInput.files && fileInput.files[0]) {
+        const fileURL = URL.createObjectURL(fileInput.files[0]);
+        const isVideo = fileInput.files[0].type.startsWith('video/');
 
-      if (!fileInput.files[0]) {
-        alert('Please select a file to upload.');
-        return;
-      }
+        const gallery = document.getElementById('public-gallery');
+        const newCard = document.createElement('div');
+        newCard.className = 'art-card';
+        newCard.setAttribute('data-username', currentUser.username);
+        
+        const mediaHTML = isVideo ? 
+          `<video src="${fileURL}" controls></video>` : 
+          `<img class="post-media" src="${fileURL}" alt="${title}">`;
 
-      const file = fileInput.files[0];
-      const newPost = {
-        id: Date.now(),
-        author: currentUser ? currentUser.id : "@GuestCreator",
-        title: title,
-        desc: desc,
-        mediaType: file.type.startsWith('video/') ? 'video' : 'image',
-        mediaUrl: URL.createObjectURL(file),
-        comments: []
-      };
-
-userSubmissions.unshift(newPost);
-      renderFeed();
-      closeModal('upload-modal');
-      document.getElementById('upload-form').reset();
-      document.getElementById('file-status').classList.add('hidden');
-      alert('Your reference submission is now live on the public feed!');
-    }
-
-    // Render User Feed
-    function renderFeed() {
-      const feedGrid = document.getElementById('user-feed-grid');
-      feedGrid.innerHTML = userSubmissions.map(post => `
-        <div class="glass-card overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-          <div>
-            <div class="h-64 bg-pastel-green/40 relative overflow-hidden">
-              ${post.mediaType === 'video' 
-                ? `<video src="${post.mediaUrl}" controls class="w-full h-full object-cover"></video>`
-                : `<img src="${post.mediaUrl}" alt="Feed Media" class="w-full h-full object-cover">`
-              }
+        newCard.innerHTML = `
+          ${mediaHTML}
+          <div class="card-info">
+            <div class="author-row">
+              <img class="author-avatar" src="${currentUser.avatar}" alt="Avatar">
+              <div class="author-details">
+                <span>@${currentUser.username}</span>
+                <small>${socials}</small>
+              </div>
             </div>
-            <div class="p-5">
-              <span class="text-[10px] font-bold text-accent-sage uppercase tracking-wider">${post.author}</span>
-              <h4 class="font-heading text-xl text-dark-green font-semibold mt-0.5">${post.title}</h4>
-              <p class="text-xs text-muted-green mt-1 font-light">${post.desc || 'No additional notes provided.'}</p>
+            <h3>${title}</h3>
+            <p>Independent artwork submission.</p>
+            <div class="card-actions">
+              <button class="pin-btn" onclick="alert('Pinned reference!')">📌 Pin Reference</button>
+              <button class="comment-toggle" onclick="toggleComments(this)">💬 Comments (0)</button>
+              <button class="delete-post-btn" onclick="deletePost(this)">Delete Post</button>
+            </div>
+            <div class="comment-section">
+              <div class="comment-list"></div>
+              <input type="text" placeholder="Add a public comment..." onkeypress="handleComment(event, this)">
             </div>
           </div>
-          <div class="p-5 pt-0 border-t border-dark-green/5 flex justify-between items-center text-xs">
-            <span class="text-muted-green">Public Reference</span>
-            <button onclick="togglePin(${post.id}, this)" class="text-dark-green font-semibold hover:text-accent-sage">
-              📌 Pin Post
-            </button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    // Pinning Mechanism
-    function togglePin(id, btn) {
-      if (pinnedPosts.has(id)) {
-        pinnedPosts.delete(id);
-        btn.classList.remove('text-soft-gold');
-        alert('Removed pin from your favorites.');
-      } else {
-        pinnedPosts.add(id);
-        btn.classList.add('text-soft-gold');
-        alert('Pinned reference to your profile!');
+        `;
+        gallery.prepend(newCard);
+        closeModal('upload-modal');
+        alert('Successfully published to the public gallery!');
+        document.getElementById('upload-form').reset();
       }
     }
 
-    // Comment Toggle & Addition
-    function toggleComments(id) {
-      const el = document.getElementById(`comments-${id}`);
-      el.classList.toggle('hidden');
+    function deletePost(btn) {
+      if(confirm('Are you sure you want to delete this artwork?')) {
+        btn.closest('.art-card').remove();
+      }
+    }
+function deletePost(btn) {
+      if(confirm('Are you sure you want to delete this artwork?')) {
+        btn.closest('.art-card').remove();
+      }
     }
 
-    function addComment(id) {
-      const input = document.getElementById(`comment-input-${id}`);
-      const text = input.value.trim();
-      if (!text) return;
-
-      const list = document.getElementById(`comment-list-${id}`);
-      const countEl = document.getElementById(`comment-count-${id}`);
-
-      const author = currentUser ? currentUser.id : "@Visitor";
-      const commentDiv = document.createElement('div');
-      commentDiv.className = "bg-white/80 p-2 rounded border border-dark-green/10";
-      commentDiv.innerHTML = `<strong class="text-dark-green">${author}:</strong> <span class="text-muted-green">${text}</span>`;
-      list.appendChild(commentDiv);
-
-      countEl.innerText = parseInt(countEl.innerText) + 1;
-      input.value = '';
+    // Comments toggle & handler with profile avatar
+    function toggleComments(btn) {
+      const section = btn.parentElement.nextElementSibling;
+      section.style.display = section.style.display === 'block' ? 'none' : 'block';
     }
-// Direct Private Suggestions Submission
-    function submitSuggestion(e) {
+
+    function handleComment(e, input) {
+      if(e.key === 'Enter' && input.value.trim() !== '') {
+        if (!currentUser) {
+          alert('Please sign in to comment.');
+          openAuthModal();
+          return;
+        }
+        const commentList = input.previousElementSibling;
+        const commentDiv = document.createElement('div');
+        commentDiv.className = 'comment-item';
+        commentDiv.innerHTML = `
+          <img class="comment-avatar" src="${currentUser.avatar}" alt="Avatar">
+          <div><strong>@${currentUser.username}:</strong> ${input.value}</div>
+        `;
+        commentList.appendChild(commentDiv);
+        input.value = '';
+      }
+    }
+
+    // Queries Submission
+    function submitQuery(e) {
       e.preventDefault();
-      const name = document.getElementById('sug-name').value;
-      const contact = document.getElementById('sug-contact').value;
-      const subject = document.getElementById('sug-subject').value;
-      const message = document.getElementById('sug-message').value;
-
-      const list = document.getElementById('admin-message-list');
-      const count = document.getElementById('inbox-count');
-
-      const msgHTML = `
-        <div class="p-4 rounded-xl border border-dark-green/15 bg-pastel-green/20 text-xs space-y-2">
-          <div class="flex justify-between font-semibold text-dark-green">
-            <span>From: ${name} (${contact})</span>
-            <span class="text-[10px] text-muted-green">Just now</span>
-          </div>
-          <div class="font-bold text-deep-forest">Subject: ${subject}</div>
-          <p class="text-muted-green">${message}</p>
-          <button onclick="alert('Replying feature queued.')" class="bg-dark-green text-white px-3 py-1 rounded text-[11px] hover:bg-deep-forest">Reply Privately</button>
-        </div>
-      `;
-
-      list.insertAdjacentHTML('afterbegin', msgHTML);
-      count.innerText = parseInt(count.innerText) + 1;
-
-      document.getElementById('suggestion-form').reset();
-      alert('Your message has been privately sent to the artist!');
+      alert('Your message has been sent directly to the Admin Studio inbox!');
+      closeModal('queries-modal');
+      e.target.reset();
     }
 
-    // Admin Passkey Check
-    function unlockAdminStudio() {
-      const pass = document.getElementById('admin-passkey').value;
-      if (pass === 'kurogane2026' || pass === 'admin') {
-        document.getElementById('admin-lock-screen').classList.add('hidden');
-        document.getElementById('admin-content').classList.remove('hidden');
+    // Admin Verification
+    function verifyAdmin() {
+      const pass = document.getElementById('admin-pass').value;
+      if(pass === 'admin123' || pass === 'kurogane') {
+        document.getElementById('admin-login').style.display = 'none';
+        document.getElementById('admin-dashboard').style.display = 'block';
       } else {
-        alert('Incorrect passkey. Default demo passkey is: kurogane2026');
+        alert('Incorrect passkey.');
       }
     }
-
-    // Initialize on page load
-    window.onload = function() {
-      renderFeed();
-    };
   </script>
 </body>
-</html> 
-
-,,,
-
-
+</html>
              

@@ -803,7 +803,82 @@ userSubmissions.unshift(newPost);
 </body>
 </html>
 
-```
+import hashlib
+
+# A simple database (dictionary) to store user data
+# Format: { "username": {"email": "user@example.com", "password": "hashed_password"} }
+user_database = {}
+
+def hash_password(password):
+    """Helper function to securely hash the password using SHA-256"""
+    return hashlib.sha256(password.encode()).hexdigest()
+
+def register():
+    print("\n--- REGISTER ---")
+    email = input("Enter your email address (kept private): ").strip()
+    username = input("Choose a public username: ").strip()
+    
+    # Check if username is already taken
+    if username in user_database:
+        print("❌ That username is already taken. Please try another.")
+        return
+
+    password = input("Choose a password: ").strip()
+    
+    # Save the user info in our 'database'
+    user_database[username] = {
+        "email": email,
+        "password": hash_password(password)
+    }
+    
+    print(f"✅ Registration successful! You can now log in using your username: '{username}' (Your email remains secure).")
+
+def login():
+    print("\n--- LOGIN ---")
+    # Notice we ask for the USERNAME, not the email, to protect privacy
+    username = input("Enter your username: ").strip()
+    password = input("Enter your password: ").strip()
+    
+    # Check if user exists
+    if username not in user_database:
+        print("❌ Invalid username or password.")
+        return
+
+    # Verify the password
+    stored_password_hash = user_database[username]["password"]
+    entered_password_hash = hash_password(password)
+    
+    if stored_password_hash == entered_password_hash:
+        # Retrieve the hidden email securely for internal backend use only
+        hidden_email = user_database[username]["email"]
+        print(f"\n🎉 Welcome back, {username}!")
+        print(f"🔒 (Backend Note: Successfully logged into account linked with email: {hidden_email})")
+    else:
+        print("❌ Invalid username or password.")
+
+# Simple menu to run the app
+def main():
+    while True:
+        print("\n====================")
+        print("1. Register")
+        print("2. Login")
+        print("3. Exit")
+        print("====================")
+        
+        choice = input("Choose an option (1-3): ").strip()
+        
+        if choice == '1':
+            register()
+        elif choice == '2':
+            login()
+        elif choice == '3':
+            print("Goodbye!")
+            break
+        else:
+            print("❌ Invalid choice. Please enter 1, 2, or 3.")
+
+if __name__ == "__main__":
+    main()
 
 
              
